@@ -6,6 +6,8 @@ import os.path
 from fontTools import ttLib
 from standardstreams import stderr
 
+import math
+
 
 from fontline.metrics import MetricsObject
 
@@ -155,7 +157,7 @@ def modify_linegap_percent(fontpath, percent):
             os2_win_descent = -hhea_descent
         else:
             os2_typo_linegap = line_spacing_units
-            hhea_ascent = int(os2_typo_ascender + 0.5 * os2_typo_linegap)
+            hhea_ascent = int(os2_typo_ascender + math.sqrt(os2_typo_linegap) * 14.5) 
             hhea_descent = -(total_height - hhea_ascent)
             os2_win_ascent = hhea_ascent
             os2_win_descent = -hhea_descent
